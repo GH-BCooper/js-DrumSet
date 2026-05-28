@@ -13,7 +13,7 @@ for (var i = 0; i < noOfDrums; i++) {
 // Keyboard Events
 document.addEventListener("keypress", function (event) {
   makeSound(event.key.toLowerCase());
-  addAnimation(event.key);
+  addAnimation(event.key.toLowerCase());
 });
 
 // Sound Controller
@@ -63,11 +63,12 @@ function makeSound(eventToHappen) {
 function addAnimation(eventToHappen) {
   var activeButton = document.querySelector("." + eventToHappen);
 
-  activeButton.classList.add("pressed");
-
-  setTimeout(function () {
-    activeButton.classList.remove("pressed");
-  }, 100);
+  if(activeButton) {
+    activeButton.classList.add("pressed");
+    setTimeout(function () {
+      activeButton.classList.remove("pressed");
+    }, 100);
+  }
 }
 
 // Debug Notes
